@@ -1,0 +1,46 @@
+.body {
+    margin: 0;
+    padding: 0;
+    font-family: "Bebas Neue", sans-serif;
+    background-color: #ffffffff;
+    color: #000000ff;
+}
+
+.header {
+    background-color: #1f4f8b;
+    color: #ffffff;
+    padding: 20px; /* top, bottom, left, and right padding of 20px */
+    display: flex; /* Displays an element as a block-level flex container */
+    align-items: center;
+    justify-content: space-between; /* Items will have space between them */
+}
+
+.main-title {
+    margin: 0;
+    font-size: 24px;
+}
+
+.nav-link {
+    text-decoration: none;
+    /* All links in HTML are underlined by default, 
+    The text-decoration: none; is used to remove the underline from links */
+    color: #ffffffff;
+    font-size: 14px;
+    padding: 10px; /* top, bottom, left, and right padding of 10px */
+}
+
+.section-title {
+    font-size: 20px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: #1f4f8b;
+}
+.button {
+    background-color: #1f4f8b;
+    color: #ffffff;
+    box-shadow: 0 2px 4px #001227ff; /*no horizontal offset; downward offset  =2px, blur=4px*/
+}
+
+.result {
+    margin-top: 10px;
+}

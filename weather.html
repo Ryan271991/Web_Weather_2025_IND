@@ -1,0 +1,67 @@
+<!DOCTYPE html> <!-- Declare this is document uses HTML -->
+<html lang="en"> <!-- the language is english -->
+<head>
+    <title>Weather</title> <!-- The title will show on the browser tab -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- this is used for fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- this is used for fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> <!-- this is used for fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- Linking the CSS file -->
+</head>
+<body>
+    <header class="header">
+        <h1 class="main-title"> Product & Weather</h1> <!-- Main title, it show on the top of the page -->
+        <nav> <!-- Navigation menu -->
+            <a href="index.html" class="nav-link">Home</a> <!-- Linking the index.html file (Home) )-->
+            <a href="products.html" class="nav-link">Products</a> <!-- Linking the products.html file -->
+        </nav>
+    </header>
+        <h2 class="section-title"> City Weather </h2> <!-- section title -->
+        <input id="city" placeholder="Enter city name" value=""><!-- Input area, the user to enter a city name -->
+        <button class ="button" onclick="getWeather()">Search</button> <!-- button run getWeather() function-->
+        <div class="result" id="weather"></div> <!--show result detail of weather -->
+        <script>
+            function getWeather(){ //Function called when the user press search button
+                // const = constant
+                const city = document.getElementById('city').value.trim(); //Read the value from input and remove spaces before and after the letters
+                const apiKey = '6033ec1a442ac1d0c0d2b330943251b7'; // My OpenWeatherMap API key
+                const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+                if (!city) { // Check for empty input
+                    document.getElementById('weather').innerHTML = `<p style= "color:red;"> Please enter a city name </p>`; //If input is empty, display this text
+                    return; 
+                }
+            
+                fetch(url) // If input is not empty, Fetch (load) the data from the server
+                    .then(response =>{ // check response is exists
+                        if(!response.ok){ //If the response is not successful, throw an error
+                            throw new Error (`Error ${response.status}: ${response.statusText} `);
+                        }
+                        return response.json(); //Convert the response into JSON format
+                    })
+                    .then (data =>{
+                        const cityName = data.name; //Extract 'Name'
+                        const country = data.sys.country; //Extract 'country'
+                        const temperature = data.main.temp.toFixed(1); //Extract 'temperature'
+                        const description = data.weather[0].description; //Extract 'description'
+                        const humidity = data.main.humidity; //Extract 'humidity'
+                        const windSpeed = data.wind.speed; //Extract 'windSpeed'
+                        //Insert weather details into the <div id="weather">
+                        document.getElementById('weather').innerHTML = `
+                        <h3> ${cityName}, ${country} </h3>
+                        <p> Temperature: ${temperature} &deg;C </p>
+                        <p> Description: ${description} </p>
+                        <p> Humidity: ${humidity} </p>
+                        <p> Wind Speed: ${windSpeed} m/s </p>
+                        `;
+                    })
+                    //Display a error text if something wrong during fetch
+                    .catch(error =>{
+                        document.getElementById('weather').innerHTML =`
+                        <p style= "color:red;"> Failed to retrieve data ${error.message} </p>
+                        <p style= "color:red;"> Make sure your API key is valid and the city name is correct </p>
+                        `;
+                    })
+            }
+        </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html> <!-- Declare this is document uses HTML -->
+<html lang="en"> <!-- the language is english -->
+<head>
+    <title> Product</title> <!-- The title will show on the browser tab -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- this is used for fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- this is used for fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> <!-- this is used for fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- Linking the CSS file -->
+</head>
+<body>
+    <header class="header">
+        <h1 class="main-title"> Product & Weather</h1> <!-- Main title, it show on the top of the page -->
+        <nav> <!-- Navigation menu -->
+            <a href="index.html" class="nav-link">Home</a> <!-- Linking the index.html file (Home) )-->
+            <a href="weather.html" class="nav-link">Weather</a> <!-- Linking the weather.html file -->
+        </nav>
+    </header>
+        <h2 class="section-title"> Search by Product's Code </h2> <!-- section title -->
+        <input id="codeInput" placeholder="Enter Product Code (Example: 123-45)"> <!-- Input area, the user to enter the product code -->
+        <button class ="button" onclick="searchProduct()">Search</button> <!-- button run searchProduct() function-->
+        <div id="result" class ="result"></div> <!--show result detail of product-->
+    <script>
+        let xmlFile = 'products.xml'; // declare xmlFile contain products data 
+
+        function searchProduct() { //Function called when the user press search button
+            let code = document.getElementById('codeInput').value.trim(); // get value the user input (id=codeInput) and remove spaces before and after the letters
+
+            if(!code){ // Check for empty input
+                document.getElementById('result').innerHTML = `<p style= "color:red;"> Please! enter a product code </p>`; //If input is empty, display this text
+                return;
+            }
+            fetch(xmlFile) // If input is not empty, Fetch (load) the XML file from the server 
+                .then (response =>{ //check response is exists
+                if (!response.ok){ //If file cannot load, throw an error
+                    throw new Error ('Failed to load XML file');
+                }
+                return response.text(); //Convert the response into text format
+                })
+                .then (data => {
+                    let parse = new DOMParser(); // Create a new DOMParser to parse XML text
+                    let xml = parse.parseFromString(data, "application/xml"); //Parse the XML text into a DOM XML object
+
+                    if(xml.getElementsByTagName("parsererror").length >0){ //If the XML is error
+                        throw new Error('Error parsing XML'); //display a text
+                    }
+
+                    let products = xml.getElementsByTagName('product'); //Get all <product> elements inside the XML
+                    let found = false; //default is false
+
+                    for (let i =0; i<products.length; i++) { //Loop check each product in the XML
+                        let productCode = products[i].getElementsByTagName('code')[0].textContent; // Read the <code> value of current product
+                        if (productCode === code){ //if the user's code matches this product
+                            let name = products[i].getElementsByTagName('name')[0].textContent; //Extract 'Name'
+                            let category = products[i].getElementsByTagName('category')[0].textContent; //Extract 'Category'
+                            let description = products[i].getElementsByTagName('description')[0].textContent; //Extract 'Description'
+                            let quantity = products[i].getElementsByTagName('quantity')[0].textContent; //Extract 'Quantity'
+                            let unitprice = products[i].getElementsByTagName('unitPrice')[0].textContent; //Extract 'UnitPrice'
+
+                            //Insert product details into the <div id="result">
+                            document.getElementById ('result').innerHTML = `
+                                <h3>${name} </h3>
+                                <p> Category: ${category}</p>
+                                <p> Description: ${description}</p>
+                                <p> Quantity: ${quantity}</p>
+                                <p> UnitPrice: ${unitprice}</p>`;
+                            found = true; //change found = true and break
+                            break;
+                        }
+                    }
+                    if (found === false){ //if no product matches user's code, show a text
+                        document.getElementById('result').innerHTML = `<p style= "color:red;"> Product not found, check the product code, please </p>`;
+                    }    
+                })
+                .catch (error => { //Display a error text if something wrong during fetch or parse
+                    document.getElementById('result').innerHTML = ` <p> Error: ${error.message} </p>
+                    <p style= "color:red;"> Make sure XML file exists </p>`;
+                });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version ="1.0" encoding="UTF-8"?> <!-- Defines the XML version and ensures characters are read correctly using UTF-8. -->
+<catalog> <!-- use https://www.mockaroo.com to create random data -->
+    <product>
+        <code>101-01</code>
+        <category>Food - Breakfast</category>
+        <name>Savory Oatmeal Cups</name>
+        <description>Savory oatmeal ready to eat, great for breakfast or a snack.</description>
+        <quantity>100</quantity>
+        <unitPrice>7.90</unitPrice>
+    </product>
+    <product>
+        <code>202-02</code>
+        <category>Food - Prepared Foods</category>
+        <name>Herbed Mushroom Risotto</name>
+        <description>Creamy risotto made with mushrooms and herbs, perfect as a side dish or main course.</description>
+        <quantity>29</quantity>
+        <unitPrice>53.00</unitPrice>
+    </product>
+    <product>
+        <code>303-03</code>
+        <category>Food - Soups</category>
+        <name>Miso Soup Starter</name>
+        <description>Miso paste for making traditional Japanese miso soup.</description>
+        <quantity>136</quantity>
+        <unitPrice>15.00</unitPrice>
+    </product>
+    <product>
+        <code>404-04</code>
+        <category>Food - Baking</category>
+        <name>Samoas Cookie Mix</name>
+        <description>Baking mix to create your favorite Samoa-style cookies at home.</description>
+        <quantity>23</quantity>
+        <unitPrice>28.30</unitPrice>
+    </product>
+    <product>
+        <code>505-05</code>
+        <category>Food - Condiments</category>
+        <name>Mango Chili Salsa</name>
+        <description>A sweet and spicy salsa made with mangoes and a hint of chili, great with chips or grilled chicken.</description>
+        <quantity>48</quantity>
+        <unitPrice>15.90</unitPrice>
+    </product>
+    <product>
+        <code>606-06</code>
+        <category>Food - Snacks</category>
+        <name>Caramel Apple Chips</name>
+        <description>Crispy apple chips drizzled with caramel for a sweet treat.</description>
+        <quantity>240</quantity>
+        <unitPrice>3.20</unitPrice>
+    </product>
+    <product>
+        <code>707-07</code>
+        <category>Food - Produce</category>
+        <name>Sweet Cherry Tomatoes</name>
+        <description>Fresh and juicy cherry tomatoes for salads and snacking.</description>
+        <quantity>98</quantity>
+        <unitPrice>4.50</unitPrice>
+    </product>
+    <product>
+        <code>808-08</code>
+        <category>Food - Beverages</category>
+        <name>Cranberry Orange Juice</name>
+        <description>Refreshing juice blend of cranberries and oranges.</description>
+        <quantity>178</quantity>
+        <unitPrice>5.50</unitPrice>
+    </product>
+    <product>
+        <code>909-09</code>
+        <category>Food - Nut Butters</category>
+        <name>Maple Almond Butter</name>
+        <description>Creamy almond butter sweetened with maple syrup for a delicious spread.</description>
+        <quantity>230</quantity>
+        <unitPrice>2.30</unitPrice>
+    </product>
+    <product>
+        <code>110-10</code>
+        <category>Food - Salads</category>
+        <name>Black Bean &amp; Corn Salad</name>
+        <description>A fresh salad made with black beans, corn, and a zesty dressing, great for summer cookouts.</description>
+        <quantity>79</quantity>
+        <unitPrice>10.10</unitPrice>
+    </product>
+</catalog>
