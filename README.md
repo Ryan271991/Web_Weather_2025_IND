@@ -32,7 +32,7 @@ The system operates based on 5 primary files working together:
 **1. Clone the repository**
 
 ```bash
-git clone [https://github.com/YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git](https://github.com/YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git)
+git clone [https://github.com/Ryan271991/Web_Weather_2025_IND](https://github.com/Ryan271991/Web_Weather_2025_IND.git)
 ```
 
 **2. Run the application**
